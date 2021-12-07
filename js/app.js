@@ -5,7 +5,7 @@ for(sectionItem of sectionsItems){
     const NewATag            = document.createElement('A');
     NewATag.textContent      = sectionItem.getAttribute('data-item-name');
     NewATag.setAttribute('data-target', sectionItemId);
-    NewATag.setAttribute('href', '#' + sectionItemId);
+    NewATag.setAttribute('href', '#');
     NewATag.classList.add('scroll-click');
     const newListItem      = document.createElement('LI');
     newListItem.append(NewATag);
@@ -28,14 +28,18 @@ allLinks.forEach((link) => {
 document.addEventListener('scroll', function (){
     document.getElementById('navigation').classList.add('sticky');
     pageScrollTopPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    sectionsItems.forEach((Item) => {
+        Item.classList.remove('active');
+    });
     sectionsItems.forEach((sectionItem) => {
+        sectionItem.classList.remove('active');
         sectionYPosition = sectionItem.offsetTop;
         if (pageScrollTopPosition > sectionYPosition - 60) {
             allLinks.forEach((link) => {
                 link.classList.remove('active');
-                sectionItem.classList.remove('active');
-                if (link.dataset.target === sectionItem.id) {
+                if (link.getAttribute('data-target') === sectionItem.getAttribute('id')) {
                     link.classList.add('active');
+                    console.log('active');
                     sectionItem.classList.add('active');
                 }
             });
