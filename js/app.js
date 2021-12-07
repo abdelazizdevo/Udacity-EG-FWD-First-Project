@@ -39,7 +39,6 @@ document.addEventListener('scroll', function (){
                 link.classList.remove('active');
                 if (link.getAttribute('data-target') === sectionItem.getAttribute('id')) {
                     link.classList.add('active');
-                    console.log('active');
                     sectionItem.classList.add('active');
                 }
             });
